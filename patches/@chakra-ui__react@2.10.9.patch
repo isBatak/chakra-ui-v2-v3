@@ -1,0 +1,28 @@
+diff --git a/dist/esm/system/providers.mjs b/dist/esm/system/providers.mjs
+index f2fbac4144c2efc6c952f6f1fe04baba6441e599..8db27e646a9ad34328de692f9c1388c52b42e8b4 100644
+--- a/dist/esm/system/providers.mjs
++++ b/dist/esm/system/providers.mjs
+@@ -8,8 +8,8 @@ import { useColorMode } from '../color-mode/color-mode-context.mjs';
+ 
+ function ThemeProvider(props) {
+   const { cssVarsRoot, theme, children } = props;
+-  const computedTheme = useMemo(() => toCSSVar(theme), [theme]);
+-  return /* @__PURE__ */ jsxs(ThemeProvider$1, { theme: computedTheme, children: [
++  const computedTheme = useMemo(() => toCSSVar(theme.v2), [theme]);
++  return /* @__PURE__ */ jsxs(ThemeProvider$1, { theme: { v2: computedTheme, v3: theme.v3 }, children: [
+     /* @__PURE__ */ jsx(CSSVars, { root: cssVarsRoot }),
+     children
+   ] });
+diff --git a/dist/esm/system/use-theme.mjs b/dist/esm/system/use-theme.mjs
+index 4d54cea6da4fe01ab6bb3560b505abda39e65a6b..e2c5d0f4e337e8910177cae846b568351e8280d9 100644
+--- a/dist/esm/system/use-theme.mjs
++++ b/dist/esm/system/use-theme.mjs
+@@ -11,7 +11,7 @@ function useTheme() {
+       "useTheme: `theme` is undefined. Seems you forgot to wrap your app in `<ChakraProvider />` or `<ThemeProvider />`"
+     );
+   }
+-  return theme;
++  return theme.v2;
+ }
+ 
+ export { useTheme };
