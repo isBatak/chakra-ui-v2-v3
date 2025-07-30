@@ -11,12 +11,8 @@ const theme = extendTheme({
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <v3.ClientOnly>
-      <ChakraProvider theme={theme} resetCSS={false} disableGlobalStyle>
-        <v3.ChakraProvider value={v3.defaultSystem}>
-          {children}
-        </v3.ChakraProvider>
-      </ChakraProvider>
-    </v3.ClientOnly>
+    <ChakraProvider theme={theme} resetCSS={false} disableGlobalStyle>
+      <v3.ChakraProvider value={v3.defaultSystem}>{children}</v3.ChakraProvider>
+    </ChakraProvider>
   );
 }
