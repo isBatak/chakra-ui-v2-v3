@@ -1,20 +1,22 @@
 "use client";
 
-import { ChakraProvider, theme } from "@chakra-ui/react";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import * as v3 from "@chakra-ui/react@next";
 
-const compatTheme = {
-  v2: theme,
-  v3: v3.defaultSystem,
-};
+const theme = extendTheme({
+  config: {
+    cssVarPrefix: "chakra-v2",
+  },
+});
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <v3.ClientOnly>
-      {/* @ts-expect-error test */}
-      <v3.ChakraProvider value={compatTheme}>
-        <ChakraProvider theme={compatTheme}>{children}</ChakraProvider>
-      </v3.ChakraProvider>
+      <ChakraProvider theme={theme} resetCSS={false} disableGlobalStyle>
+        <v3.ChakraProvider value={v3.defaultSystem}>
+          {children}
+        </v3.ChakraProvider>
+      </ChakraProvider>
     </v3.ClientOnly>
   );
 }

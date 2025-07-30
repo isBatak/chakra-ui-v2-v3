@@ -21,7 +21,7 @@ export default function Home() {
         </Stack>
       </Box>
 
-      <v3.Box>
+      <v3.Box p="5">
         <v3.Stack gap="4" direction="row" align="center">
           <v3.Button colorPalette="teal" size="xs">
             Button
